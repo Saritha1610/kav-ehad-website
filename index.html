@@ -3,91 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קו אחד - פיתוח ובנייה</title>
+    <title>קו אחד | פיתוח ובנייה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* הגדרות עיצוב כלליות */
+        /* --- משתנים ועיצוב בסיסי --- */
+        :root {
+            --primary-color: #1a1a1a; /* שחור פחם */
+            --accent-color: #c5a059; /* זהב יוקרתי עדין - אופציונלי */
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+        }
+
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Heebo', sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: var(--text-dark);
+            background-color: white;
             line-height: 1.6;
         }
 
-        /* תפריט ניווט עליון */
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- תפריט עליון (Header) --- */
         header {
+            background-color: white;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #eaeaea;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo img {
-            height: 50px; /* גובה הלוגו */
+            height: 60px; /* גובה מותאם ללוגו */
             width: auto;
         }
 
         nav ul {
-            list-style: none;
             display: flex;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
+            gap: 40px;
         }
 
         nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1.1rem;
         }
 
-        nav a:hover {
-            color: #555; /* צבע בעת מעבר עכבר */
-            text-decoration: underline;
+        nav a:hover { color: var(--accent-color); }
+
+        .header-cta {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 0; /* פינות ישרות למראה הנדסי */
+            font-weight: bold;
         }
 
-        /* אזור ראשי (Hero Section) */
+        /* --- Hero Section (תמונה ראשית) --- */
         .hero {
-            background-color: #f4f4f4; /* כאן נשים תמונת רקע בהמשך */
-            height: 80vh; /* 80% מגובה המסך */
+            height: 85vh;
+            background-color: #333; /* צבע גיבוי עד שתהיה תמונה */
+            /* ברגע שיהיו תמונות נחליף את השורה למטה לכתובת התמונה */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            color: white;
             padding: 20px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #222;
+            font-size: 4rem;
+            margin: 0 0 20px 0;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .hero p {
             font-size: 1.5rem;
+            max-width: 700px;
             margin-bottom: 40px;
-            color: #555;
-            max-width: 600px;
+            font-weight: 300;
         }
 
-        /* כפתור מעוצב */
-        .btn {
-            background-color: #000;
+        .btn-main {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: 2px solid white;
+        }
+
+        .btn-main:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        /* --- אזור השירותים (Services) --- */
+        .services {
+            padding: 80px 50px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 40px;
+            width: 300px;
+            border-top: 4px solid var(--primary-color);
+            text-align: right;
+        }
+
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+
+        /* --- אזור הפרויקטים --- */
+        .projects {
+            padding: 80px 50px;
+            background-color: #f4f4f4;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: white;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+            /* תמונת רקע זמנית */
+            background-color: #ddd; 
+        }
+
+        .project-info {
+            background: white;
+            width: 100%;
+            padding: 20px;
+            transform: translateY(0);
+            transition: 0.3s;
+        }
+
+        .project-card:hover .project-info {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* --- יצירת קשר --- */
+        .contact-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
             color: white;
             padding: 15px 40px;
-            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
             font-weight: bold;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .btn:hover {
-            background-color: #333;
+        /* התאמה למובייל */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 20px; padding: 20px; }
+            nav ul { gap: 20px; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -99,18 +215,75 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">דף הבית</a></li>
-                <li><a href="#">פרויקטים</a></li>
-                <li><a href="#">שירותים</a></li>
-                <li><a href="#">צור קשר</a></li>
+                <li><a href="#">ראשי</a></li>
+                <li><a href="#services">שירותים</a></li>
+                <li><a href="#projects">פרויקטים</a></li>
             </ul>
         </nav>
+        <a href="https://wa.me/972500000000" class="header-cta">חייגו אלינו</a>
     </header>
 
     <section class="hero">
-        <h1>בונים את החזון שלך</h1>
-        <p>קו אחד - מומחים בבנייה, פיתוח וגמר ברמה הגבוהה ביותר. איכות ללא פשרות משלב התכנון ועד המפתח.</p>
-        <a href="#" class="btn">דברו איתנו</a>
+        <h1>הנדסה. דיוק. עוצמה.</h1>
+        <p>חברת קו אחד מתמחה בניהול וביצוע פרויקטים למגורים בסטנדרט הגבוה ביותר. משלב השלד ועד למפתח, אנחנו בונים לכם שקט נפשי.</p>
+        <a href="#contact" class="btn-main">צפו בפרויקטים שלנו</a>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title">תחומי התמחות</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>ביצוע שלד</h3>
+                <p>עבודה מדויקת מול תוכניות קונסטרוקטור, הקפדה על תקנים מחמירים ועמידה בלוחות זמנים צפופים.</p>
+            </div>
+            <div class="service-card">
+                <h3>עבודות גמר</h3>
+                <p>רמת גימור גבוהה ללא פשרות. טיח, ריצוף, אינסטלציה וחשמל בניהול מוקפד עד לפרט האחרון.</p>
+            </div>
+            <div class="service-card">
+                <h3>ניהול פרויקטים</h3>
+                <p>ליווי היזם או הלקוח הפרטי משלב התוכניות, דרך הפיקוח ועד למסירת המפתח ללקוח.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="section-title" style="text-align: center;">נבחרת הפרויקטים</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>פרויקט נחלת</h3>
+                    <p>בנייה רוויה למגורים</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>מתחם האירוס</h3>
+                    <p>וילה יוקרתית - שלד וגמר</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>בית סוקניק</h3>
+                    <p>ניהול וביצוע עד מפתח</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>פרויקט אלפרט</h3>
+                    <p>בניית בית פרטי</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-banner">
+        <h2>מתחילים פרויקט חדש? בואו נדבר.</h2>
+        <p>הצוות שלנו זמין לייעוץ ראשוני ללא התחייבות</p>
+        
+        <a href="https://wa.me/972500000000" class="whatsapp-btn">
+            דברו איתנו בוואטסאפ
+        </a>
     </section>
 
 </body>
