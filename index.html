@@ -56,7 +56,7 @@
             height: 50px; 
             width: auto;
             display: block;
-        } /* הוספתי את הסוגר שהיה חסר כאן */
+        } 
         
         nav ul { display: flex; gap: 40px; }
         nav a { font-weight: 500; font-size: 1.1rem; cursor: pointer; position: relative;}
@@ -74,7 +74,7 @@
         /* --- Hero --- */
         .hero {
             height: 85vh;
-            /* כאן מוגדרת תמונת הרקע הראשית */
+            /* הותאם לפי התמונה שלך: main-bg.jpg */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('images/main-bg.jpg');
             background-size: cover;
             background-position: center;
@@ -88,7 +88,6 @@
             padding: 0 20px;
         }
 
-        /* אנימציית כניסה בטוחה (CSS בלבד) לכותרת */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -194,6 +193,7 @@
         .about-image {
             width: 500px;
             height: 400px;
+            /* תמונה זמנית לאודות - ניתן להחליף */
             background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800');
             background-size: cover;
             background-position: center;
@@ -259,7 +259,6 @@
         .footer-info h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-color); }
         .footer-info p { font-size: 1.2rem; margin-bottom: 10px; opacity: 0.9; line-height: 1.8; }
         
-        /* אזור פרטי קשר מודגש */
         .contact-details { margin-top: 30px; font-size: 1.1rem; }
         .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
         .contact-item i { color: var(--accent-color); width: 25px; text-align: center; }
@@ -422,7 +421,8 @@
             </div>
 
             <div class="project-card" onclick="openGallery('irus')"
-                 style="background-image: url('images/irus/1.jpg');"> <div class="project-info">
+                 style="background-image: url('images/irus/1.jpg');">
+                <div class="project-info">
                     <h3>מתחם האירוס</h3>
                     <p>וילה יוקרתית | לחצו לגלריה</p>
                 </div>
@@ -433,6 +433,14 @@
                 <div class="project-info">
                     <h3>בית סוקניק</h3>
                     <p>ניהול וביצוע עד מפתח | לחצו לגלריה</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openGallery('alflert')"
+                 style="background-image: url('images/alflert/1.jpg');">
+                <div class="project-info">
+                    <h3>פרויקט אלפלרט</h3>
+                    <p>פרויקט נוסף | לחצו לגלריה</p>
                 </div>
             </div>
 
@@ -510,6 +518,10 @@
             'sokinik': [
                 'images/sokinik/1.jpg',
                 'images/sokinik/2.jpg'
+            ],
+            'alflert': [
+                'images/alflert/1.jpg',
+                'images/alflert/2.jpg'
             ]
         };
 
@@ -519,10 +531,14 @@
         const modalImg = document.getElementById("img01");
 
         function openGallery(projectName) {
-            currentProject = projects[projectName];
-            currentIndex = 0;
-            modal.style.display = "flex";
-            showImage();
+            if (projects[projectName]) {
+                currentProject = projects[projectName];
+                currentIndex = 0;
+                modal.style.display = "flex";
+                showImage();
+            } else {
+                console.error("Project not found: " + projectName);
+            }
         }
 
         function closeGallery() {
