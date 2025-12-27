@@ -3,40 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קו אחד | בנייה, יזמות וניהול</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>תיק העבודות שלי</title>
     <style>
-        /* --- עיצוב כללי --- */
+        /* --- 1. הגדרות כלליות ומשתנים --- */
         :root {
-            --primary-color: #1a1a1a;
-            --accent-color: #c5a059; /* צבע זהב */
-            --bg-light: #f8f9fa;
-            --text-color: #333;
+            --primary-color: #333333;
+            --secondary-color: #666;
+            --accent-color: #007bff; /* צבע להדגשה (למשל בהובר) */
+            --bg-color: #f8f9fa;
+            --header-height: 80px; /* גובה ההדר */
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Heebo', sans-serif;
             margin: 0;
-            padding: 0;
-            color: var(--text-color);
-            background-color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
             line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        h1, h2, h3 { margin-top: 0; }
-        input, textarea, button { font-family: 'Heebo', sans-serif; }
-
-        /* --- Header --- */
+        /* --- 2. עיצוב ה-Header (דביק למעלה) --- */
         header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95); /* מעט שקוף */
+            backdrop-filter: blur(10px); /* אפקט טשטוש יוקרתי מאחור */
             padding: 10px 50px;
             display: flex;
             justify-content: space-between;
@@ -44,522 +37,165 @@
             border-bottom: 1px solid #eaeaea;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: var(--header-height);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
+        /* לוגו */
         .logo a {
-    display: block; /* חשוב כדי שהקישור יעטוף את התמונה */
-}
-
-.logo img {
-    height: 50px; /* גובה הלוגו - שנה את המספר הזה כדי להגדיל/להקטין */
-    width: auto;  /* שומר על פרופורציות */
-    display: block;
-        
-        nav ul { display: flex; gap: 40px; }
-        nav a { font-weight: 500; font-size: 1.1rem; cursor: pointer; position: relative;}
-        nav a:hover { color: var(--accent-color); }
-
-        .header-cta {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 25px;
-            font-weight: bold;
-            border-radius: 4px;
+            display: block;
         }
-        .header-cta:hover { background-color: var(--accent-color); }
+        .logo img {
+            height: 50px; /* גובה הלוגו - לשנות לפי הצורך */
+            width: auto;
+            display: block;
+        }
 
-        /* --- Hero --- */
-        .hero {
-            height: 85vh;
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('images/main-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        /* תפריט ניווט */
+        nav ul {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        /* אנימציית כניסה בטוחה (CSS בלבד) לכותרת */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 { 
-            font-size: 4.5rem; 
-            margin: 0 0 20px 0; 
-            font-weight: 900; 
-            line-height: 1.1; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            animation: fadeUp 1s ease-out forwards;
-        }
-        
-        .hero p { 
-            font-size: 1.5rem; 
-            max-width: 700px; 
-            margin-bottom: 40px; 
-            font-weight: 300; 
-            opacity: 0; 
-            animation: fadeUp 1s ease-out 0.5s forwards;
-        }
-        
-        .btn-main {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 18px 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border: 2px solid var(--accent-color);
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            opacity: 0;
-            animation: fadeUp 1s ease-out 1s forwards;
-        }
-        .btn-main:hover { background-color: transparent; border-color: white; transform: scale(1.05); }
-
-        /* --- Services --- */
-        .services { padding: 100px 50px; background-color: white; text-align: center; }
-        .section-title { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; color: var(--primary-color); position: relative; display: inline-block; }
-        .section-title::after {
-            content: ''; width: 60px; height: 4px; background: var(--accent-color);
-            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
-        }
-
-        .section-subtitle { max-width: 600px; margin: 20px auto 60px auto; font-size: 1.1rem; color: #666; }
-        
-        .services-grid { 
-            display: flex; 
-            justify-content: center; 
-            gap: 30px; 
-            flex-wrap: wrap; 
-        }
-        
-        .service-card {
-            background: var(--bg-light);
-            padding: 40px 30px;
-            width: 350px;
-            border-top: 4px solid var(--primary-color);
-            text-align: right;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-radius: 8px;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border-top-color: var(--accent-color);
-        }
-
-        .icon-box { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
-        .service-card p { color: #555; margin-bottom: 25px; font-size: 1rem; }
-        
-        .service-link {
-            font-weight: 700;
+        nav a {
+            text-decoration: none;
             color: var(--primary-color);
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: auto;
-        }
-        .service-link:hover { color: var(--accent-color); gap: 10px; }
-
-        /* --- About Section --- */
-        .about {
-            padding: 100px 50px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-        
-        .about-content { max-width: 600px; }
-        .about-content h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: var(--primary-color); }
-        .about-content p { font-size: 1.1rem; color: #555; margin-bottom: 15px; }
-        
-        .about-image {
-            width: 500px;
-            height: 400px;
-            background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800');
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            box-shadow: 20px 20px 0px var(--accent-color);
-        }
-
-        /* --- Projects --- */
-        .projects { padding: 100px 50px; background-color: #f4f4f4; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-        .project-card {
-            height: 350px;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
             position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 8px;
         }
-        
-        .project-card::before {
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- 3. אזור ראשי (Hero Image) - החדש! --- */
+        .hero {
+            /* כאן מוגדרת תמונת הרקע הראשית */
+            background-image: url('images/main-bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            height: 60vh; /* גובה האזור (60% מגובה המסך) */
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        /* שכבת כהה מעל התמונה כדי שהטקסט יהיה קריא */
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            transition: 0.3s;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* כהות של 50% */
+            z-index: 1;
         }
-        .project-card:hover::before { background: rgba(0,0,0,0.3); }
 
-        .project-info {
-            background: white;
-            width: 100%;
-            padding: 25px;
+        /* התוכן שמעל לשכבת הכהה */
+        .hero-content {
             position: relative;
             z-index: 2;
-            transition: 0.3s;
-            transform: translateY(0);
-        }
-        .project-card:hover .project-info { background: var(--primary-color); color: white; }
-        .project-info h3 { margin-bottom: 5px; font-size: 1.2rem; }
-        .project-info p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
-
-        /* --- Footer & Form --- */
-        footer {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 80px 50px 20px 50px;
+            padding: 20px;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-            justify-content: space-between;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .footer-info { flex: 1; min-width: 300px; }
-        .footer-info h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-color); }
-        .footer-info p { font-size: 1.2rem; margin-bottom: 10px; opacity: 0.9; line-height: 1.8; }
-        
-        /* אזור פרטי קשר מודגש */
-        .contact-details { margin-top: 30px; font-size: 1.1rem; }
-        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .contact-item i { color: var(--accent-color); width: 25px; text-align: center; }
-        .contact-item a:hover { color: var(--accent-color); text-decoration: underline; }
-
-        .social-icons { display: flex; gap: 20px; margin-top: 30px; }
-        .social-icons a {
-            width: 50px; height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+        .hero p {
             font-size: 1.5rem;
-            color: white;
-            transition: 0.3s;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
         }
-        .social-icons a:hover { background: var(--accent-color); transform: translateY(-5px); }
 
-        .footer-form { flex: 1; min-width: 300px; background: white; padding: 40px; border-radius: 10px; color: #333; }
-        .footer-form h3 { font-size: 1.8rem; margin-bottom: 10px; }
-        .form-cta { color: var(--accent-color); font-weight: bold; margin-bottom: 20px; display: block; }
-
-        .form-group { margin-bottom: 20px; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 15px;
-            border: 1px solid #ddd; border-radius: 4px;
-            font-size: 1rem; box-sizing: border-box;
-            background: #f9f9f9;
+        /* --- 4. גלריית פרויקטים --- */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto; /* מרווח עליון ותחתון */
+            padding: 0 20px;
         }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-color); background: white; }
 
-        .submit-btn {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .submit-btn:hover { background-color: var(--accent-color); }
-
-        .copyright {
+        .section-title {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* --- Modal (הגלריה הקופצת) --- */
-        .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
-            justify-content: center; align-items: center; flex-direction: column;
-        }
-        .modal-content { max-width: 90%; max-height: 80vh; border: 2px solid white; box-shadow: 0 0 30px rgba(0,0,0,0.8); }
-        .close { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 50px; font-weight: bold; cursor: pointer; }
-        .close:hover { color: var(--accent-color); }
-        .modal-nav { margin-top: 20px; display: flex; gap: 40px; }
-        .nav-btn { color: white; font-size: 1.5rem; cursor: pointer; user-select: none; padding: 10px 20px; border: 1px solid white; border-radius: 4px; }
-        .nav-btn:hover { background-color: white; color: black; }
-
-        /* מובייל */
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 20px; padding: 20px; }
-            .hero h1 { font-size: 3rem; }
-            .services, .about, .projects, footer { padding: 60px 20px; }
-            .service-card { width: 100%; }
-            .about { flex-direction: column-reverse; }
-            .about-image { width: 100%; height: 300px; }
-            .footer-container { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-       <div class="logo">
-        <a href="index.html">
-            <img src="logo.png" alt="לוגו האתר">
-        </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">ראשי</a></li>
-                <li><a href="#about">אודות</a></li>
-                <li><a href="#services">שירותים</a></li>
-                <li><a href="#projects">פרויקטים</a></li>
-            </ul>
-        </nav>
-        <a href="#contact" class="header-cta">צור קשר</a>
-    </header>
-
-    <section class="hero">
-        <h1>הופכים מגרש לבית</h1>
-        <p>פתרונות בנייה מתקדמים, יזמות וניהול פרויקטים תחת קורת גג אחת.</p>
-        <a href="#contact" class="btn-main">בואו נבדוק היתכנות</a>
-    </section>
-
-    <section id="about" class="about">
-        <div class="about-image"></div>
-        <div class="about-content">
-            <h2>יותר מקבלן – השותף שלך להצלחה</h2>
-            <p><strong>חברת קו אחד</strong> נולדה מתוך הבנה שבנייה היא לא רק בטון וברזל, אלא תהליך שדורש ראייה רחבה, דיוק הנדסי והבנה כלכלית מעמיקה.</p>
-            <p>הצוות שלנו מורכב מאנשי מקצוע שחיים את השטח אך מבינים את המספרים. בין אם יש לכם מגרש להשקעה שיושב כאבן שאין לה הופכין, ובין אם אתם בונים את בית חלומותיכם – אנחנו כאן כדי לגשר על הפער בין החזון לביצוע.</p>
-            <p>אנחנו מאמינים בשקיפות מלאה, בעמידה קנאית בלוחות זמנים, ובניהול תקציב שחוסך לכם כסף וכאבי ראש.</p>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <h2 class="section-title">הדרך שלכם לנכס מושלם</h2>
-        <p class="section-subtitle">בין אם אתם בונים בית פרטי, מחפשים פתרון יזמי למגרש או צריכים מנהל פרויקט – יש לנו את המסלול עבורכם.</p>
-        
-        <div class="services-grid">
-            
-            <div class="service-card">
-                <div class="icon-box"><i class="fa-solid fa-house-chimney"></i></div>
-                <div>
-                    <h3>בנייה עד מפתח</h3>
-                    <p>יש לכם מגרש מוכן? אנחנו נהפוך אותו לבית. אנו מבצעים את כל עבודות הבנייה, משלב היסודות והשלד ועד למסירת המפתח, בסטנדרט גימור גבוה ובאחריות מלאה.</p>
-                </div>
-                <a href="#contact" class="service-link">לבניית הבית שלי <i class="fa-solid fa-arrow-left"></i></a>
-            </div>
-
-            <div class="service-card">
-                <div class="icon-box"><i class="fa-solid fa-handshake"></i></div>
-                <div>
-                    <h3>שותפות יזמית ומימוש קרקע</h3>
-                    <p>מחזיקים במגרש לבנייה רוויה אך חסר לכם הון לבנייה? אל תשאירו אותו ריק. אתם מביאים את הקרקע, אנחנו את הביצוע והמימון. פתרון מושלם להשבחת הנכס.</p>
-                </div>
-                <a href="#contact" class="service-link">לבדיקת היתכנות <i class="fa-solid fa-arrow-left"></i></a>
-            </div>
-
-            <div class="service-card">
-                <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
-                <div>
-                    <h3>ניהול פרויקט ופיקוח</h3>
-                    <p>רוצים ראש שקט? אנו מספקים מעטפת ניהול חיצונית הכוללת: פיקוח על הקבלנים, ניהול לוחות זמנים ושמירה הדוקה על התקציב למניעת חריגות יקרות.</p>
-                </div>
-                <a href="#contact" class="service-link">לניהול הפרויקט <i class="fa-solid fa-arrow-left"></i></a>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <h2 class="section-title" style="text-align: center; display:block;">פרויקטים נבחרים</h2>
-        <div class="projects-grid">
-            
-            <div class="project-card" onclick="openGallery('nahalat')" 
-                 style="background-image: url('images/nahalat/1.jpg');">
-                <div class="project-info">
-                    <h3>פרויקט נחלת</h3>
-                    <p>בנייה רוויה למגורים | לחצו לגלריה</p>
-                </div>
-            </div>
-
-            <div class="project-card" onclick="openGallery('irus')"
-                 style="background-image: uurl('images/irus/1.jpg');">
-                <div class="project-info">
-                    <h3>מתחם האירוס</h3>
-                    <p>וילה יוקרתית | לחצו לגלריה</p>
-                </div>
-            </div>
-
-            <div class="project-card" onclick="openGallery('sokinik')"
-                 style="background-image: url('images/sokinik/1.jpg');">
-                <div class="project-info">
-                    <h3>בית סוקניק</h3>
-                    <p>ניהול וביצוע עד מפתח | לחצו לגלריה</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="footer-container">
-            <div class="footer-info">
-                <h2>השאלה היא לא אם לבנות,<br>אלא עם מי לבנות.</h2>
-                <p>האם אתם מנצלים את הפוטנציאל המלא של המגרש שלכם? אל תתנו לחלום להישאר על הנייר. בואו ניפגש לקפה (עלינו) ונראה איך הופכים את הקרקע שלכם לנכס מניב.</p>
-                
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <a href="tel:0506501051">050-6501051</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:one1line.dev@gmail.com">one1line.dev@gmail.com</a>
-                    </div>
-                </div>
-
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/kav1.dev/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://wa.me/972506501051" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-form">
-                <h3>השאירו פרטים</h3>
-                <span class="form-cta">ונחזור אליכם לשיחת ייעוץ ללא התחייבות</span>
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <input type="text" placeholder="שם מלא" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="טלפון" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="4" placeholder="ספרו לנו קצת על הפרויקט (יש מגרש? מחפשים ניהול?)"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">דברו איתי!</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="copyright">
-            &copy; 2024 קו אחד - חברה לבנייה ויזמות. כל הזכויות שמורות.
-        </div>
-    </footer>
-
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeGallery()">&times;</span>
-        <img class="modal-content" id="img01">
-        <div class="modal-nav">
-            <span class="nav-btn" onclick="changeImage(-1)">&#10094; הקודם</span>
-            <span class="nav-btn" onclick="changeImage(1)">הבא &#10095;</span>
-        </div>
-    </div>
-
-    <script>
-        // --- גלריה ---
-        const projects = {
-            'nahalat': [
-                'images/nahalat/1.jpg',
-                'images/nahalat/2.jpg',
-                'images/nahalat/3.jpg'
-            ],
-            'irus': [
-                'images/irus/1.jpg',
-                'images/irus/2.jpg'
-            ],
-            'sokinik': [
-                'images/sokinik/1.jpg',
-                'images/sokinik/2.jpg'
-            ]
-        };
-
-        let currentProject = [];
-        let currentIndex = 0;
-        const modal = document.getElementById("myModal");
-        const modalImg = document.getElementById("img01");
-
-        function openGallery(projectName) {
-            currentProject = projects[projectName];
-            currentIndex = 0;
-            modal.style.display = "flex";
-            showImage();
-        }
-
-        function closeGallery() {
-            modal.style.display = "none";
-        }
-
-        function showImage() {
-            modalImg.src = currentProject[currentIndex];
-        }
-
-        function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex >= currentProject.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = currentProject.length - 1;
-            showImage();
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeGallery();
-            }
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
         }
         
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeGallery();
-            }
-        });
-    </script>
+        /* קו קטן מתחת לכותרת */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
 
-</body>
-</html>
+        /* רשת הפרויקטים */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* כרטיס פרויקט בודד */
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .project-image {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05); /* זום עדין לתמונה בהובר */
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+        }
+
+        .project-info p {
+            margin: 0;
